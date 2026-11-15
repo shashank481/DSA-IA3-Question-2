@@ -113,6 +113,28 @@ void display() {
     }
 }
 
+void displaySummary() {
+    int totalKeys = 0;
+    int occupied = 0;
+    int collisions = 0;
+
+    for (int i = 0; i < M; i++) {
+        if (!chains[i].empty()) {
+            occupied++;
+            totalKeys += chains[i].size();
+
+            if (chains[i].size() > 1) {
+                collisions += chains[i].size() - 1;
+            }
+        }
+    }
+
+    cout << "\n===== HASH TABLE SUMMARY =====\n";
+    cout << "Total keys inserted : " << totalKeys << "\n";
+    cout << "Occupied indexes    : " << occupied << "\n";
+    cout << "Total collisions    : " << collisions << "\n";
+}
+
 int main() {
     long long prn = DEFAULT_PRN;
     cout << "Enter PRN (press Enter to use default " << DEFAULT_PRN << "): ";
@@ -150,6 +172,7 @@ int main() {
         display();
         cout << "\n";
     }
+    displaySummary();
 
     // Duplicate-key test
     cout << "--- Duplicate key test ---\n";
