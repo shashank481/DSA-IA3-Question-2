@@ -7,6 +7,7 @@
 // Table size : m = 23 (smallest prime > 20 keys; assumption stated in report)
 // ============================================================
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <list>
 #include <string>
@@ -49,6 +50,22 @@ int midSquareHash(int key) {
     return mid % M;
 }
 
+void showHashCalculation(int key) {
+    int sq = key * key;
+    int mid = (sq / 10) % 100;
+
+    cout << "Square of " << key << " = "
+         << setw(4) << setfill('0') << sq
+         << setfill(' ') << "\n";
+
+    cout << "Middle two digits = "
+         << setw(2) << setfill('0') << mid
+         << setfill(' ') << "\n";
+
+    cout << "Hash index = " << mid << " % " << M
+         << " = " << mid % M << "\n";
+}
+
 int hashFn(int key) {
     return USE_DIVISION ? divisionHash(key) : midSquareHash(key);
 }
@@ -78,6 +95,13 @@ void insertKey(int key) {
         return;
     }
     int h = hashFn(key);
+    cout << "\nDEBUG: Inserting key = " << key << endl;
+    cout << "DEBUG: USE_DIVISION = " << USE_DIVISION << endl;
+
+    if (!USE_DIVISION) {
+    showHashCalculation(key);
+    }
+
     if (USE_PROBING) {
         int i = h, probes = 1;
         while (table_[i] != -1) {
@@ -185,10 +209,12 @@ int main() {
     cout << "Enter value to search: ";
     cin >> searchValue;
 
-    if (searchKey(searchValue))
+    if (searchKey(searchValue)) {
     cout << searchValue << " found in hash table\n";
-    else
+}
+else {
     cout << searchValue << " not found in hash table\n";
+}
 
     return 0;
 }
