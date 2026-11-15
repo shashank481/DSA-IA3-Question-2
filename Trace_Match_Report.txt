@@ -1,0 +1,121 @@
+# TRACE-MATCH REPORT
+## Hash Table with Recorded Development Log
+
+**PRN:** 202501100145  
+**Seed (S):** 145  
+**Scenario:** Cold-drink flavours  
+**Hash Function:** Mid-square  
+**Collision Handling:** Separate Chaining  
+**Table Size:** 23
+
+### 1. Dataset Generation
+
+The dataset is generated using:
+
+v[i] = (S + 13 × i) mod 100
+
+For S = 145 and i = 0 to 19, the generated dataset is:
+
+45, 58, 71, 84, 97, 10, 23, 36, 49, 62, 75, 88, 1, 14, 27, 40, 53, 66, 79, 92.
+
+### 2. Hash Function
+
+Since my PRN is odd, I selected the mid-square hashing method.
+
+Steps:
+1. Square the given key.
+2. Extract the middle two digits from the four-digit, zero-padded square.
+3. Calculate the remainder after dividing the extracted number by 23.
+
+Formula:
+
+h(k) = (Middle two digits of k²) mod 23
+
+### 3. Predicted Hash Table
+
+Before running the program, the expected hash indexes were calculated manually.
+
+| Key | Square | Middle digits | Hash index |
+|---:|---:|---:|---:|
+| 45 | 2025 | 02 | 2 |
+| 58 | 3364 | 36 | 13 |
+| 71 | 5041 | 04 | 4 |
+| 84 | 7056 | 05 | 5 |
+| 97 | 9409 | 40 | 17 |
+| 10 | 0100 | 10 | 10 |
+| 23 | 0529 | 52 | 6 |
+| 36 | 1296 | 29 | 6 |
+| 49 | 2401 | 40 | 17 |
+| 62 | 3844 | 84 | 15 |
+| 75 | 5625 | 62 | 16 |
+| 88 | 7744 | 74 | 5 |
+| 1 | 0001 | 00 | 0 |
+| 14 | 0196 | 19 | 19 |
+| 27 | 0729 | 72 | 3 |
+| 40 | 1600 | 60 | 14 |
+| 53 | 2809 | 80 | 11 |
+| 66 | 4356 | 35 | 12 |
+| 79 | 6241 | 24 | 1 |
+| 92 | 8464 | 46 | 0 |
+
+### 4. Final Predicted Hash Table
+
+| Index | Expected chain |
+|---:|---|
+| 0 | 1 → 92 |
+| 1 | 79 |
+| 2 | 45 |
+| 3 | 27 |
+| 4 | 71 |
+| 5 | 84 → 88 |
+| 6 | 23 → 36 |
+| 7 | Empty |
+| 8 | Empty |
+| 9 | Empty |
+| 10 | 10 |
+| 11 | 53 |
+| 12 | 66 |
+| 13 | 58 |
+| 14 | 40 |
+| 15 | 62 |
+| 16 | 75 |
+| 17 | 97 → 49 |
+| 18 | Empty |
+| 19 | 14 |
+| 20 | Empty |
+| 21 | Empty |
+| 22 | Empty |
+
+### 5. Actual Program Output
+
+After compiling and executing the C++ program, the output showed the same hash indexes 
+and linked chains as the manually predicted table.
+
+The program inserted all 20 keys and displayed the table after each insertion.
+
+### 6. Comparison and Analysis
+
+The predicted and actual results matched.
+
+- Total keys inserted: 20
+- Occupied indexes: 16
+- Total collisions: 4
+- Collision handling: Separate chaining
+- Duplicate test: 45 was correctly identified as a duplicate.
+- Successful search: 45 was found.
+- Unsuccessful search: 101 was not found.
+
+The four collisions occurred at indexes 0, 5, 6, and 17.
+
+There was no mismatch between the predicted and actual hash table.
+
+### 7. Conclusion
+
+The hash table was successfully implemented using the mid-square hashing method and 
+separate chaining. The personalized dataset was generated using the PRN seed. The 
+final program correctly handled insertion, collisions, duplicate keys, and searching. 
+The Trace-Match Report confirms that the manually predicted hash table matches the 
+actual program output.
+
+**Note:** Table size 23 was selected as an implementation assumption because it is 
+the smallest prime number greater than 20.

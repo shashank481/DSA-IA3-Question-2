@@ -1,0 +1,39 @@
+# Debugging Log – Hash Table Project
+
+**PRN:** 202501100145  
+**Scenario:** Cold-drink flavours  
+**Hash Function:** Mid-square  
+**Collision Handling:** Separate Chaining  
+**Table Size:** 23
+
+### Commit 1: Create initial hash table program
+Created the initial C++ program for the hash table. Set up the basic structure, included
+the required header files, and prepared the program for the personalized dataset. The 
+initial version established the foundation for further implementation.
+
+### Commit 2: Implement mid-square hash function
+Implemented the mid-square hashing method because my PRN is odd. The key is squared, the
+middle two digits are extracted, and the result is divided by the table size to obtain the
+hash index. Tested the function with sample values to verify the calculations.
+
+### Commit 3: Add hash table summary statistics
+Added functionality to display the total number of inserted keys, occupied indexes, and 
+collisions. During development, I accidentally placed the displaySummary() function inside 
+display(), which caused a compilation error. I fixed it by moving displaySummary() outside 
+display() and defining both functions separately.
+
+### Commit 4: Add user input based search operation
+Implemented a search operation that accepts a value from the user and checks whether it 
+exists in the hash table. Replaced the earlier fixed search value with user input. Tested 
+the operation using an existing key to confirm that searching works correctly.
+
+### Commit 5: Display detailed mid-square calculations
+Added detailed output showing the square of each key, its middle two digits, and the final 
+hash index. Initially, the calculation output was not visible because the updated program 
+needed to be compiled and executed again. Recompiled the source file and verified the output
+successfully.
+
+### Commit 6: Test unsuccessful search operation
+Added an additional test to search for the value 101, which is not present in the dataset.
+Verified that the program correctly displays "101 not found in hash table". This confirmed 
+that the search operation handles both successful and unsuccessful searches.
