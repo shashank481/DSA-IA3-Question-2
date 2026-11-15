@@ -211,10 +211,16 @@ int main() {
 
     if (searchKey(searchValue)) {
     cout << searchValue << " found in hash table\n";
-}
-else {
+    }
+    else {
     cout << searchValue << " not found in hash table\n";
-}
+    }
+    cout << "\n--- Unsuccessful search test ---\n";
+
+    if (searchKey(101))
+    cout << "101 found in hash table\n";
+    else
+    cout << "101 not found in hash table\n";
 
     return 0;
 }
