@@ -42,6 +42,7 @@ int divisionHash(int key) {
 }
 
 // Mid-square: square the key, take the middle two digits, reduce mod M
+// Square the key and extract the middle two digits
 int midSquareHash(int key) {
     int sq  = key * key;
     int mid = (sq / 10) % 100;     // middle digits of a up-to-4-digit square
