@@ -179,9 +179,16 @@ int main() {
     insertKey(data[0]);
 
     // Search test
+    int searchValue;
+
     cout << "\n--- Search test ---\n";
-    cout << data[5] << (searchKey(data[5]) ? " found" : " not found") << "\n";
-    cout << "101 " << (searchKey(101) ? "found" : "not found") << "\n";
+    cout << "Enter value to search: ";
+    cin >> searchValue;
+
+    if (searchKey(searchValue))
+    cout << searchValue << " found in hash table\n";
+    else
+    cout << searchValue << " not found in hash table\n";
 
     return 0;
 }
